@@ -1,0 +1,25 @@
+<div class="container">
+ <div class="row">
+  <% @articles.each do |article| %>
+   <%= link_to article do %>
+    <div class="col-md-3 margin-top-5per article-block">
+     <% if article.image_id.present? %>
+      <%= image_tag attachment_url(article, :image), class: 'img-responsive padding-top-15 article-list-image' %>
+     <% else %>
+       <%= image_tag 'dog.jpg', class: 'img-responsive padding-top-15', style: 'max-height: 150px; width:100%; object-fit: cover' %>
+     <% end %>
+     
+     <div class="padding-bottom-15">
+      <p class="tittle"><%= article.tittle %></p>
+      <span>
+       <%= l article.created_at, format: :short %>
+      </span>
+     </div>
+    </div>
+   <% end %>
+  <% end %>
+ </div>
+ <div class="row">
+   <%= link_to '新規作成',new_article_path, class: 'margin-top-5per btn btn-primary' %>
+  </div>
+</div>
